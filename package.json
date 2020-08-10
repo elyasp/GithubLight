@@ -1,5 +1,6 @@
 {
   "name": "glorified-list",
+  "author": "https://github.com/elyasp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
