@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SearchWrap } from "./styles";
-import { Repositories } from "../../components/repositories";
+import { SearchForm, HomeWrap, Intro } from "./styles";
 
 export const HomeView = () => {
   const [userName, setUserName] = useState();
@@ -11,17 +10,17 @@ export const HomeView = () => {
   };
 
   return (
-    <SearchWrap>
-      <form>
+    <HomeWrap>
+      <Intro>Find Repositories.</Intro>
+      <SearchForm action={`/repositories/${userName}`}>
         <input
           type="text"
-          placeholder="Search a Github User"
+          placeholder="type a GitHub user"
           onChange={handleChange}
           required
         />
-        <button>Go</button>
-      </form>
-      <Repositories userName={userName} />
-    </SearchWrap>
+        <button>Search</button>
+      </SearchForm>
+    </HomeWrap>
   );
 };

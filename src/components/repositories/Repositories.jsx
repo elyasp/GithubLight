@@ -1,49 +1,69 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { SearchWrap } from "./styles";
+import { Repo, Intro, Back, MainWrap } from "./styles";
 
 export const Repositories = (props) => {
   const [userData, setUserData] = useState();
-
-  // useEffect(async () => {
-  //   const result = await axios(
-  //     'https://hn.algolia.com/api/v1/search?query=redux',
-  //   );
-
-  //   setData(result.data);
-  // });
+  const [search, setSearch] = useState("");
+  const [filteredRepos, setFilteredRepos] = useState();
 
   useEffect(() => {
+    const userName = props.match.params.username;
+
     async function fetchData() {
-      await axios(`https://api.github.com/users/${props.userName}/repos`).then(
-        (response) => {
+      await axios(
+        `https://api.github.com/users/${userName}/repos?page=1&per_page=100`
+      )
+        .then((response) => {
           setUserData(response.data);
-        }
-      );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
     fetchData();
-  }, [props.userName]);
+  }, [props.match.params]);
 
-  // const handleFetch = async (e) => {
-  //   e.preventDefault();
-  //   await axios(`https://api.github.com/users/${props.userName}/repos`).then(
-  //     (response) => {
-  //       setUserData(response.data);
-  //     }
-  //   );
-  // };
+  useEffect(() => {
+    setFilteredRepos(
+      userData &&
+        userData.filter((item) =>
+          item.name.toLowerCase().includes(search.toLowerCase())
+        )
+    );
+  }, [search, userData]);
 
   return (
-    <SearchWrap>
-      {userData && (
+    <MainWrap>
+      <div>
+        <Back href="/">
+          <p>⇜ Search another user</p>
+        </Back>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
         <ul>
-          {userData.map((item) => (
-            <li key={item.id}>
-              <a href={item.html_url}>{item.name}</a>
-            </li>
-          ))}
+          {filteredRepos &&
+            filteredRepos.map((item) => (
+              <Repo key={item.id}>
+                <a
+                  href={item.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.name}
+                </a>
+              </Repo>
+            ))}
         </ul>
-      )}
-    </SearchWrap>
+      </div>
+    </MainWrap>
   );
 };
