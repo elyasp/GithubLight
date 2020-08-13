@@ -12,5 +12,6 @@ Backlog
 - Create error messages for
 
   - incorrect user, no user
+  - User not found
 
 - Implement pagination

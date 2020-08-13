@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { Repo, Intro, Back, MainWrap } from "./styles";
+import { Intro, Back, MainWrap, Results, Searchbar, Title } from "./styles";
+import { RepoDetail } from "../repoDetail";
+import Fade from "react-reveal/Fade";
 
 export const Repositories = (props) => {
   const [userData, setUserData] = useState();
   const [search, setSearch] = useState("");
   const [filteredRepos, setFilteredRepos] = useState();
+  const [userFound, setUserFound] = useState();
 
   useEffect(() => {
     const userName = props.match.params.username;
@@ -17,9 +19,11 @@ export const Repositories = (props) => {
       )
         .then((response) => {
           setUserData(response.data);
+          setUserFound(true);
         })
         .catch((error) => {
           console.log(error);
+          setUserFound(false);
         });
     }
     fetchData();
@@ -34,36 +38,42 @@ export const Repositories = (props) => {
     );
   }, [search, userData]);
 
+  const profilePhoto = userData && userData[0].owner.avatar_url;
+  const githubUser = userData && userData[0].owner.login;
+
   return (
-    <MainWrap>
+    (userData && (
       <div>
-        <Back href="/">
-          <p>⇜ Search another user</p>
-        </Back>
-      </div>
+        <Intro>
+          <Back href="/">
+            <button>⇜ Back</button>
+          </Back>
+        </Intro>
 
-      <div>
-        <input
-          type="text"
-          placeholder="Search"
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
-        <ul>
-          {filteredRepos &&
-            filteredRepos.map((item) => (
-              <Repo key={item.id}>
-                <a
-                  href={item.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {item.name}
-                </a>
-              </Repo>
-            ))}
-        </ul>
+        <MainWrap>
+          <Fade top>
+            <Title>
+              <img src={profilePhoto} alt="profilepic" />
+              <p>{githubUser}</p>
+            </Title>
+          </Fade>
+          <Fade bottom>
+            <Searchbar
+              type="text"
+              placeholder="Search"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Results>
+              {filteredRepos &&
+                filteredRepos.map((item) => <RepoDetail item={item} />)}
+            </Results>
+          </Fade>
+        </MainWrap>
       </div>
-    </MainWrap>
+    )) || (
+      <Results>
+        <p>Searching user...</p>
+      </Results>
+    )
   );
 };
