@@ -4,12 +4,19 @@ import { Intro, Back, MainWrap, Results, Searchbar, Title } from "./styles";
 import { RepoDetail } from "../repoDetail";
 import Fade from "react-reveal/Fade";
 
+/**
+ * Component to fetch user data with search entry received in props.
+ * @param {String} props
+ */
 export const Repositories = (props) => {
   const [userData, setUserData] = useState();
   const [search, setSearch] = useState("");
   const [filteredRepos, setFilteredRepos] = useState();
   const [userFound, setUserFound] = useState();
 
+  /**
+   * Fetching user upon mounting component
+   */
   useEffect(() => {
     const userName = props.match.params.username;
 
@@ -29,6 +36,11 @@ export const Repositories = (props) => {
     fetchData();
   }, [props.match.params]);
 
+  /**
+   * Immediate filtering depending on two statehooks.
+   *
+   * @param
+   */
   useEffect(() => {
     setFilteredRepos(
       userData &&
@@ -44,13 +56,12 @@ export const Repositories = (props) => {
   return (
     (userData && (
       <div>
-        <Intro>
-          <Back href="/">
-            <button>⇜ Back</button>
-          </Back>
-        </Intro>
-
         <MainWrap>
+          <Intro>
+            <Back href="/">
+              <button>⇜ Back</button>
+            </Back>
+          </Intro>
           <Fade top>
             <Title>
               <img src={profilePhoto} alt="profilepic" />

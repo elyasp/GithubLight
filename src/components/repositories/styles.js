@@ -9,13 +9,14 @@ export const MainWrap = styled.div`
 `;
 
 export const Intro = styled.div`
-  max-width: fit-content;
+  width: 100vw;
+  z-index: 3;
+  position: fixed;
 `;
 
 export const Back = styled.a`
   button {
     text-decoration-line: none;
-    position: fixed;
     max-width: fit-content;
     margin: 1em;
     cursor: pointer;

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { SearchForm, HomeWrap, Intro } from "./styles";
 
+/**
+ * This component renders the homepage
+ * and redirects to the appropriate userpage.
+ * @component
+ */
+
 export const HomeView = () => {
   const [userName, setUserName] = useState();
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setUserName(e.target.value);
+  const handleChange = (event) => {
+    event.preventDefault();
+    setUserName(event.target.value);
   };
 
   return (

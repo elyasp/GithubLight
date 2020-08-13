@@ -1,6 +1,11 @@
 import React from "react";
 import { List, RepoCard } from "./styles";
 
+/**
+ * Component to render repository details, only being rendered if parent component has successfully fetched
+ *
+ * @param {Object} props
+ */
 export const RepoDetail = (props) => {
   return (
     <List>
