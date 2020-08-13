@@ -1,8 +1,16 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Intro, Back, MainWrap, Results, Searchbar, Title } from "./styles";
+import {
+  Back,
+  MainWrap,
+  Results,
+  Searchbar,
+  Title,
+  ErrorMessage,
+} from "./styles";
 import { RepoDetail } from "../repoDetail";
-import { Fade, Zoom } from "react-reveal";
+import { Fade, Zoom, Slide } from "react-reveal";
+import Flash from "react-reveal/Flash";
 
 /**
  * This component fetches from the GitHub API upon mounting component using search entry from the route params in props.
@@ -14,7 +22,7 @@ export const Repositories = (props) => {
   const [userData, setUserData] = useState();
   const [search, setSearch] = useState("");
   const [filteredRepos, setFilteredRepos] = useState();
-  const [userFound, setUserFound] = useState(false);
+  const [userFound, setUserFound] = useState(true);
 
   useEffect(() => {
     const userName = props.match.params.username;
@@ -44,7 +52,7 @@ export const Repositories = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setUserFound(true);
+      setUserFound(false);
     }, 6000);
   });
 
@@ -52,15 +60,15 @@ export const Repositories = (props) => {
   const githubUser = userData && userData[0].owner.login;
 
   return (
-    <Fragment>
+    <>
       {(userData && (
         <div>
           <MainWrap>
-            <Intro>
-              <Back href="/">
+            <Back>
+              <a href="/">
                 <button>⇜ Back</button>
-              </Back>
-            </Intro>
+              </a>
+            </Back>
             <Fade top>
               <Title>
                 <img src={profilePhoto} alt="profilepic" />
@@ -70,7 +78,7 @@ export const Repositories = (props) => {
             <Zoom>
               <Searchbar
                 type="text"
-                placeholder="Search"
+                placeholder="Search through repositories"
                 onChange={(e) => setSearch(e.target.value)}
               />
             </Zoom>
@@ -84,13 +92,24 @@ export const Repositories = (props) => {
         </div>
       )) || (
         <Results>
-          {userFound ? (
-            <p>Searching user...</p>
-          ) : (
-            <p>No user found, try again</p>
+          {(userFound && (
+            <Flash>
+              <p>Searching user...</p>
+            </Flash>
+          )) || (
+            <Slide left>
+              <ErrorMessage>
+                <p>User not found 😟</p>
+                <Back>
+                  <a href="/">
+                    <button>⇜ Back</button>
+                  </a>
+                </Back>
+              </ErrorMessage>
+            </Slide>
           )}
         </Results>
       )}
-    </Fragment>
+    </>
   );
 };

@@ -12,7 +12,7 @@ export const RepoDetail = (props) => {
       <a href={props.item.html_url} target="_blank" rel="noopener noreferrer">
         <RepoCard>
           <h2>{props.item.name}</h2>
-          <p>{props.item.description}</p>
+          <p>{props.item.description || <p>No description...</p>}</p>
         </RepoCard>
       </a>
     </List>

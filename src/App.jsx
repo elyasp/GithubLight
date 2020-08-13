@@ -3,6 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import { HomeView } from "./views";
 import { Repositories } from "./components";
 
+/**
+ * This main app component distinguishes routes to render their according component
+ */
 function App() {
   return (
     <div>

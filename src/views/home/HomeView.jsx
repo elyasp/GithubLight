@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SearchForm, HomeWrap, Intro } from "./styles";
+import { SearchForm, HomeWrap, Title, SubTitle } from "./styles";
 import Zoom from "react-reveal/Zoom";
 
 /**
@@ -22,7 +22,8 @@ export const HomeView = () => {
 
   return (
     <HomeWrap>
-      <Intro>Find Repositories.</Intro>
+      <Title>Github Light</Title>
+      <SubTitle>Find Repositories. Just Repositories.</SubTitle>
       <Zoom>
         <SearchForm action={`/repositories/${userName}`}>
           <input

@@ -1,28 +1,32 @@
-window.reactComponents = {};
 
-window.vueComponents = {};
+    window.reactComponents = {};
 
-import React from "react";
+    window.vueComponents = {};
 
-import ReactDOM from "react-dom";
+  
+      import React from "react";
 
-import ReactWrapper from "../node_modules/better-docs/lib/react-wrapper.js";
+      import ReactDOM from "react-dom";
 
-window.React = React;
 
-window.ReactDOM = ReactDOM;
+      import ReactWrapper from '../node_modules/better-docs/lib/react-wrapper.js';
 
-window.ReactWrapper = ReactWrapper;
+      window.React = React;
 
-import "./styles/reset.css";
+      window.ReactDOM = ReactDOM;
 
-import "./styles/iframe.css";
+      window.ReactWrapper = ReactWrapper;
 
-import Component0 from "../src/views/home/HomeView.jsx";
-reactComponents["HomeView"] = Component0;
+    
+    import './styles/reset.css';
 
-import Component1 from "../src/components/repoDetail/RepoDetail.jsx";
-reactComponents["RepoDetail"] = Component1;
+    import './styles/iframe.css';
 
-import Component2 from "../src/components/repositories/Repositories.jsx";
-reactComponents["Repositories"] = Component2;
+  import Component0 from '../src/views/home/HomeView.jsx';
+reactComponents['HomeView'] = Component0;
+
+import Component1 from '../src/components/repoDetail/RepoDetail.jsx';
+reactComponents['RepoDetail'] = Component1;
+
+import Component2 from '../src/components/repositories/Repositories.jsx';
+reactComponents['Repositories'] = Component2;

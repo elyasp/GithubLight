@@ -1,4 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const LayeredTextShadow = css`
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12), 0 32px 32px rgba(0, 0, 0, 0.12),
+    0 64px 64px rgba(0, 0, 0, 0.12), 0 128px 128px rgba(0, 0, 0, 0.12);
+`;
 
 export const HomeWrap = styled.div`
   display: flex;
@@ -8,13 +15,16 @@ export const HomeWrap = styled.div`
   max-height: 100vh;
 `;
 
-export const Intro = styled.p`
-  font-size: 5rem;
+export const Title = styled.div`
+  font-size: 7rem;
   margin: 0;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
-    0 16px 16px rgba(0, 0, 0, 0.12), 0 32px 32px rgba(0, 0, 0, 0.12),
-    0 64px 64px rgba(0, 0, 0, 0.12), 0 128px 128px rgba(0, 0, 0, 0.12);
+  ${LayeredTextShadow}
+`;
+
+export const SubTitle = styled.div`
+  font-size: 2rem;
+  margin: 0;
+  ${LayeredTextShadow}
 `;
 
 export const SearchForm = styled.form`
@@ -22,6 +32,7 @@ export const SearchForm = styled.form`
   align-items: center;
   justify-content: center;
   padding: 2em;
+  ${LayeredTextShadow}
 
   input {
     outline: none;
