@@ -1,1 +1,1 @@
-export { RepoDetail } from "./RepoDetail.jsx";
+export { RepoDetail } from "./RepoDetail";
