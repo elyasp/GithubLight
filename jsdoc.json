@@ -1,22 +1,21 @@
 {
   "tags": {
-    "allowUnknownTags": true,
-    "dictionaries": ["jsdoc", "closure"]
+    "allowUnknownTags": true
   },
   "source": {
-    "include": ["src"],
-    "includePattern": ".+\\.js(doc|x)?$",
-    "excludePattern": "(^|\\/|\\\\)_"
+    "include": ["./src"]
   },
   "plugins": ["plugins/markdown", "better-docs/component"],
+  "opts": {
+    "encoding": "utf8",
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true,
+    "template": "./node_modules/better-docs"
+  },
   "templates": {
     "better-docs": {
-      "name": "My React components"
+      "name": "Github Repository List made for MVST"
     }
-  },
-  "opts": {
-    "destination": "docs",
-    "recurse": true,
-    "readme": "README.md"
   }
 }

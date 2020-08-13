@@ -1,40 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: components/repositories/Repositories.jsx</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>components/repositories/Repositories.jsx</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css" />
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css" />
+    <link type="text/css" rel="stylesheet" href="" />
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
 
-<body>
+  <body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
 
-<div id="main">
+    <div class="top-nav">
+      <div class="inner">
+        <a
+          id="hamburger"
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+          <a href="index.html">
+            <h1 class="navbar-item">Github Repository List made for MVST</h1>
+          </a>
+        </div>
+        <div class="menu">
+          <div class="navigation">
+            <a href="index.html" class="link">
+              API Documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <div class="sidebar" id="sidebarNav">
+        <nav>
+          <h2><a href="index.html">Documentation</a></h2>
+          <div class="category">
+            <h3>Components</h3>
+            <ul>
+              <li><a href="HomeView.html">HomeView</a></li>
+              <li><a href="RepoDetail.html">RepoDetail</a></li>
+              <li><a href="Repositories.html">Repositories</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="core" id="main-content-wrapper">
+        <div class="content">
+          <header class="page-title">
+            <p>Source</p>
+            <h1>components/repositories/Repositories.jsx</h1>
+          </header>
 
-    <h1 class="page-title">Source: components/repositories/Repositories.jsx</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+          <section>
+            <article>
+              <pre
+                class="prettyprint source linenums"
+              ><code>import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Intro, Back, MainWrap, Results, Searchbar, Title } from "./styles";
 import { RepoDetail } from "../repoDetail";
-import Fade from "react-reveal/Fade";
+import { Fade, Zoom } from "react-reveal";
 
 /**
- * Component to fetch user data with search entry received in props.
- * @param {String} props
+ * This component fetches from the GitHub API upon mounting component using search entry from the route params in props.
+ * Filters the rendered results from the fetched data by search and then returns a filtered Array.
+ * @param {String} props Passed into route
+ * @component
  */
 export const Repositories = (props) => {
   const [userData, setUserData] = useState();
@@ -42,9 +106,6 @@ export const Repositories = (props) => {
   const [filteredRepos, setFilteredRepos] = useState();
   const [userFound, setUserFound] = useState();
 
-  /**
-   * Fetching user upon mounting component
-   */
   useEffect(() => {
     const userName = props.match.params.username;
 
@@ -64,11 +125,6 @@ export const Repositories = (props) => {
     fetchData();
   }, [props.match.params]);
 
-  /**
-   * Immediate filtering depending on two statehooks.
-   *
-   * @param
-   */
   useEffect(() => {
     setFilteredRepos(
       userData &amp;&amp;
@@ -96,12 +152,14 @@ export const Repositories = (props) => {
               &lt;p>{githubUser}&lt;/p>
             &lt;/Title>
           &lt;/Fade>
-          &lt;Fade bottom>
+          &lt;Zoom>
             &lt;Searchbar
               type="text"
               placeholder="Search"
               onChange={(e) => setSearch(e.target.value)}
             />
+          &lt;/Zoom>
+          &lt;Fade bottom>
             &lt;Results>
               {filteredRepos &amp;&amp;
                 filteredRepos.map((item) => &lt;RepoDetail item={item} />)}
@@ -117,25 +175,36 @@ export const Repositories = (props) => {
   );
 };
 </code></pre>
-        </article>
-    </section>
+            </article>
+          </section>
+        </div>
 
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#HomeView">HomeView</a></li><li><a href="global.html#RepoDetail">RepoDetail</a></li><li><a href="global.html#Repositories">Repositories</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Thu Aug 13 2020 17:16:08 GMT+0200 (GMT+02:00)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
+        <footer class="footer">
+          <div class="content has-text-centered">
+            <p>
+              Documentation generated by
+              <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
+            </p>
+            <p class="sidebar-created-by">
+              <a
+                href="https://github.com/SoftwareBrothers/better-docs"
+                target="_blank"
+                >BetterDocs theme</a
+              >
+              provided with <i class="fas fa-heart"></i> by
+              <a href="http://softwarebrothers.co" target="_blank"
+                >SoftwareBrothers - JavaScript Development Agency</a
+              >
+            </p>
+          </div>
+        </footer>
+      </div>
+      <div id="side-nav" class="side-nav"></div>
+    </div>
+    <script src="scripts/app.min.js"></script>
+    <script>
+      PR.prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
 </html>

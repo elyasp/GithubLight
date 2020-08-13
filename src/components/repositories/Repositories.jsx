@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Intro, Back, MainWrap, Results, Searchbar, Title } from "./styles";
 import { RepoDetail } from "../repoDetail";
-import Fade from "react-reveal/Fade";
+import { Fade, Zoom } from "react-reveal";
 
 /**
- * Component to fetch user data with search entry received in props.
- * @param {String} props
+ * This component fetches from the GitHub API upon mounting component using search entry from the route params in props.
+ * Filters the rendered results from the fetched data by search and then returns a filtered Array.
+ * @param {String} props Passed into route
+ * @component
  */
 export const Repositories = (props) => {
   const [userData, setUserData] = useState();
@@ -14,9 +16,6 @@ export const Repositories = (props) => {
   const [filteredRepos, setFilteredRepos] = useState();
   const [userFound, setUserFound] = useState();
 
-  /**
-   * Fetching user upon mounting component
-   */
   useEffect(() => {
     const userName = props.match.params.username;
 
@@ -36,11 +35,6 @@ export const Repositories = (props) => {
     fetchData();
   }, [props.match.params]);
 
-  /**
-   * Immediate filtering depending on two statehooks.
-   *
-   * @param
-   */
   useEffect(() => {
     setFilteredRepos(
       userData &&
@@ -68,12 +62,14 @@ export const Repositories = (props) => {
               <p>{githubUser}</p>
             </Title>
           </Fade>
-          <Fade bottom>
+          <Zoom>
             <Searchbar
               type="text"
               placeholder="Search"
               onChange={(e) => setSearch(e.target.value)}
             />
+          </Zoom>
+          <Fade bottom>
             <Results>
               {filteredRepos &&
                 filteredRepos.map((item) => <RepoDetail item={item} />)}
