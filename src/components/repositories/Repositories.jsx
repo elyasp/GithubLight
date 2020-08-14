@@ -32,7 +32,20 @@ export const Repositories = (props) => {
         `https://api.github.com/users/${userName}/repos?page=1&per_page=100`
       )
         .then((response) => {
-          setUserData(response.data);
+          if (response.data.length === 0) {
+            setUserData([
+              {
+                name: "foo bar",
+                owner: {
+                  login: "...this user has no repositories...",
+                  avatar_url:
+                    "https://avatars2.githubusercontent.com/u/396915?s=400&v=4",
+                },
+              },
+            ]);
+          } else {
+            setUserData(response.data);
+          }
         })
         .catch((error) => {
           console.log(error);
