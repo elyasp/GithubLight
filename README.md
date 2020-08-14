@@ -1,7 +1,8 @@
 # Github repositories list made for MVST
 
 ### Search for an existing user on Github and view the public repositories.
-#### Using Github API v3
+#### Made using React Hooks, styled-components, Github API v3, documented with Betterdocs theme
+
 
 --- 
 
