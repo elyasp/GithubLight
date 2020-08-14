@@ -6,4 +6,4 @@ Using Github API v3
 Backlog
 
 5. Implement pagination on API response with max 10 results per page
-6. Write BDD tests
+6. Extend BDD tests
