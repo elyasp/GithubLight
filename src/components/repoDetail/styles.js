@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const List = styled.div`
+export const CardWrap = styled.div`
   a {
     text-decoration: none;
   }
@@ -12,9 +12,9 @@ export const RepoCard = styled.div`
   background-color: #3c736b;
   width: 350px;
   height: 170px;
-  margin: 1em;
   padding: 1em;
   color: white;
+  margin: 1em;
   border-radius: 4px;
 
   &:hover {

@@ -53,7 +53,7 @@ export const Repositories = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setUserFound(false);
-    }, 6000);
+    }, 5000);
   });
 
   const profilePhoto = userData && userData[0].owner.avatar_url;

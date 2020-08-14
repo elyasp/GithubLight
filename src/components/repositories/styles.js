@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const LayeredShadow = css`
+const LayeredBoxShadow = css`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 16px 16px rgba(0, 0, 0, 0.12), 0 32px 32px rgba(0, 0, 0, 0.12),
@@ -34,7 +34,7 @@ export const Back = styled.div`
       font-size: 2rem;
       text-decoration: none;
       color: white;
-      ${LayeredShadow}
+      ${LayeredBoxShadow}
     }
   }
 `;
@@ -76,7 +76,7 @@ export const Title = styled.div`
   img {
     max-width: 250px;
     border-radius: 250px;
-    ${LayeredShadow}
+    ${LayeredBoxShadow}
   }
 
   p {

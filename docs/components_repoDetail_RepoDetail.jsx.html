@@ -93,7 +93,7 @@
 import { List, RepoCard } from "./styles";
 
 /**
- * This render individual repository details, only being rendered if parent component has successfully fetched from API
+ * This renders individual repository details, only being rendered if parent component has successfully fetched from API
  * @param {Object} props Contains endpoint information
  * @component
  */
@@ -103,7 +103,7 @@ export const RepoDetail = (props) => {
       &lt;a href={props.item.html_url} target="_blank" rel="noopener noreferrer">
         &lt;RepoCard>
           &lt;h2>{props.item.name}&lt;/h2>
-          &lt;p>{props.item.description || &lt;p>No description...&lt;/p>}&lt;/p>
+          &lt;p>{props.item.description || &lt;em>No description...&lt;/em>}&lt;/p>
         &lt;/RepoCard>
       &lt;/a>
     &lt;/List>

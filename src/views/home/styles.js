@@ -24,6 +24,7 @@ export const Title = styled.div`
 export const SubTitle = styled.div`
   font-size: 2rem;
   margin: 0;
+  color: #4f4f4f;
   ${LayeredTextShadow}
 `;
 
@@ -32,7 +33,6 @@ export const SearchForm = styled.form`
   align-items: center;
   justify-content: center;
   padding: 2em;
-  ${LayeredTextShadow}
 
   input {
     outline: none;
@@ -46,6 +46,7 @@ export const SearchForm = styled.form`
   }
 
   button {
+    outline: none;
     height: 54px;
     font-size: 25px;
     background-color: #3f8f7c;
